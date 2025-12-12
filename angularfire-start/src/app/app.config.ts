@@ -11,14 +11,20 @@ import { provideRouter } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(environment.firebase)),
-      provideFirestore(() => getFirestore()),
-      provideAuth(() => getAuth()),
-      provideFunctions(() => getFunctions()),
-      provideStorage(() => getStorage()),
-      provideMessaging(() => getMessaging())
-    ),
-    provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"friendlychat-878c4","appId":"1:980092139000:web:148d3eb4a971264d26d20d","storageBucket":"friendlychat-878c4.firebasestorage.app","apiKey":"AIzaSyD6fm35cWXdeYBzxvoWoY3FQuBoF36SuB0","authDomain":"friendlychat-878c4.firebaseapp.com","messagingSenderId":"980092139000","projectNumber":"980092139000","version":"2"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideMessaging(() => getMessaging()), provideStorage(() => getStorage())
+    provideFirebaseApp(() => initializeApp({
+    apiKey: "AIzaSyD6fm35cWXdeYBzxvoWoY3FQuBoF36SuB0",
+    authDomain: "friendlychat-878c4.firebaseapp.com",
+    projectId: "friendlychat-878c4",
+    storageBucket: "friendlychat-878c4.firebasestorage.app",
+    messagingSenderId: "980092139000",
+    appId: "1:980092139000:web:148d3eb4a971264d26d20d"
+    })),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideMessaging(() => {
+        return getMessaging();
+    }),
+    provideStorage(() => getStorage()),
+    provideRouter(routes)
   ],
 };
